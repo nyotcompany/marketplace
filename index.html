@@ -169,6 +169,15 @@ a,button,.track{-webkit-tap-highlight-color:transparent;touch-action:manipulatio
 .sw button[aria-pressed=true]{box-shadow:0 0 0 2px var(--ivory),0 0 0 4px var(--gold)}
 .cap{min-height:20px;margin:0 0 12px;text-align:center;font-size:13px;color:var(--muted)}
 .brow{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+#gm{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:var(--ivory2);touch-action:manipulation;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.gs{display:flex;justify-content:space-between;margin-top:8px;font-size:14px;color:var(--muted)}.gs b{color:var(--ink);font-weight:500}
+@media(prefers-reduced-motion:no-preference){
+  .bsv{animation:flo 4s ease-in-out infinite alternate}
+  @keyframes flo{from{transform:translateY(0) rotate(-.6deg)}to{transform:translateY(-6px) rotate(.6deg)}}
+  .rv{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .rv.in{opacity:1;transform:none}
+  .btn:active{transform:scale(.96)}
+}
 #fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
 </style>
 </head>
@@ -257,6 +266,13 @@ a,button,.track{-webkit-tap-highlight-color:transparent;touch-action:manipulatio
     <div class="sw" id="sw" role="group" aria-label="Warna bib"></div>
     <p class="cap" id="cap" aria-live="polite"></p>
     <div class="brow"><button type="button" class="btn primary" id="bSave">Simpan gambar</button><button type="button" class="btn" id="bRand">Acak</button></div>
+  </section>
+
+  <section class="sec" id="gameSec" aria-labelledby="gameH">
+    <h2 id="gameH">Lari Rintang</h2>
+    <p class="cap">Ketuk untuk melompat. Hindari kerucut, kumpulkan magnet bib.</p>
+    <canvas id="gm" width="600" height="200" tabindex="0" role="img" aria-label="Game Lari Rintang. Ketuk layar atau tekan spasi untuk melompat."></canvas>
+    <div class="gs"><span>Skor <b id="gSc">0</b></span><span>Rekor <b id="gBest">0</b></span></div>
   </section>
 
   <section class="sec faq" id="faqSec" hidden><h2>Pertanyaan umum</h2><div id="faq"></div></section>
@@ -492,6 +508,89 @@ a,button,.track{-webkit-tap-highlight-color:transparent;touch-action:manipulatio
     const t = Date.now(); taps = taps.filter(x => t - x < 2500); taps.push(t);
     if (taps.length >= 5) { taps = []; store.set("bn-finish", ++fin); boom(e.clientX, e.clientY); say("Garis finis! 🎉 Ini finis ke-" + fin + " kamu."); count("finis", "Finis"); }
   });
+
+
+  /* animasi muncul saat di-scroll */
+  if (matchMedia("(prefers-reduced-motion: no-preference)").matches && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold:.12});
+    document.querySelectorAll(".sec").forEach(el => { el.classList.add("rv"); io.observe(el); });
+  }
+
+  /* game Lari Rintang */
+  (function(){
+    const cvs = $("gm"), c = cvs.getContext("2d"), W = 600, H = 200, G = 160, RX = 80;
+    const dpr = Math.min(devicePixelRatio || 1, 2); cvs.width = W * dpr; cvs.height = H * dpr; c.scale(dpr, dpr);
+    const css = n => getComputedStyle(root).getPropertyValue(n).trim();
+    let st = "idle", y, vy, spd, dist, coins, obs, cn, nx, last, raf, endAt = 0, vis = true, best = +store.get("bn-game") || 0;
+    $("gBest").textContent = best;
+    const score = () => Math.floor(dist / 10) + coins * 10;
+    function reset(){ y = G; vy = 0; spd = 4.2; dist = 0; coins = 0; obs = []; cn = []; nx = 300; }
+    function jump(){ if (y >= G) vy = -11.5; }
+    function act(){
+      if (st === "play") { jump(); return; }
+      if (Date.now() < endAt) return;
+      reset(); st = "play"; count("game", "Game"); jump(); run();
+    }
+    function run(){ if (raf || st !== "play" || !vis || document.hidden) return; last = performance.now(); raf = requestAnimationFrame(tick); }
+    function stop(){ cancelAnimationFrame(raf); raf = 0; }
+    function over(){
+      st = "over"; endAt = Date.now() + 500; stop();
+      const sc = score();
+      if (sc > best) { best = sc; store.set("bn-game", best); $("gBest").textContent = best; if (sc > 20) { const r = cvs.getBoundingClientRect(); boom(r.left + r.width / 2, r.top + r.height / 2); say("Rekor baru: " + sc + "! 🏅"); } }
+      draw();
+    }
+    function tick(now){
+      raf = 0; const dt = Math.min(2.5, (now - last) / 16.67); last = now;
+      spd = Math.min(10, spd + .0016 * dt); dist += spd * dt;
+      vy += .6 * dt; y += vy * dt; if (y >= G) { y = G; vy = 0; }
+      nx -= spd * dt;
+      if (nx <= 0) {
+        const hurdle = Math.random() < .35, w = hurdle ? 38 : 24, h = hurdle ? 24 : 32;
+        obs.push({x:W + 20, w, h, hurdle});
+        if (Math.random() < .6) for (let i = 0; i < 3; i++) cn.push({x:W + 20 + w / 2 - 36 + i * 36, y:G - 78 + (i === 1 ? -8 : 4)});
+        nx = spd * (42 + Math.random() * 34) + w;
+      }
+      obs.forEach(o => o.x -= spd * dt); cn.forEach(o => o.x -= spd * dt);
+      obs = obs.filter(o => o.x > -60); cn = cn.filter(o => o.x > -20);
+      const bx = RX - 8, by = y - 38;
+      for (const o of obs) if (bx + 16 > o.x + 4 && bx < o.x + o.w - 4 && by + 38 > G - o.h + 4) { draw(); over(); return; }
+      cn = cn.filter(o => { if (Math.abs(o.x - RX) < 20 && Math.abs(o.y - (y - 20)) < 28) { coins++; return false; } return true; });
+      $("gSc").textContent = score();
+      draw(); raf = requestAnimationFrame(tick);
+    }
+    function draw(){
+      const fg = css("--runner"), ln = css("--line"), gold = css("--gold"), mu = css("--muted");
+      c.clearRect(0, 0, W, H);
+      c.strokeStyle = ln; c.lineWidth = 2; c.beginPath(); c.moveTo(0, G + 2); c.lineTo(W, G + 2); c.stroke();
+      c.setLineDash([14, 22]); c.lineDashOffset = dist % 36; c.beginPath(); c.moveTo(0, G + 14); c.lineTo(W, G + 14); c.stroke(); c.setLineDash([]);
+      obs.forEach(o => {
+        c.fillStyle = "#e8651a";
+        if (o.hurdle) { c.fillRect(o.x, G - o.h, 4, o.h); c.fillRect(o.x + o.w - 4, G - o.h, 4, o.h); c.fillRect(o.x, G - o.h, o.w, 6); c.fillStyle = "#fff"; c.fillRect(o.x + 8, G - o.h, 8, 6); }
+        else { c.beginPath(); c.moveTo(o.x, G); c.lineTo(o.x + o.w / 2, G - o.h); c.lineTo(o.x + o.w, G); c.fill(); c.fillStyle = "#fff"; c.fillRect(o.x + o.w * .27, G - o.h * .45, o.w * .46, 4); }
+      });
+      cn.forEach(o => { c.fillStyle = gold; c.beginPath(); c.arc(o.x, o.y, 11, 0, 7); c.fill(); c.strokeStyle = "rgba(255,255,255,.7)"; c.lineWidth = 2; c.beginPath(); c.arc(o.x, o.y, 7, 0, 7); c.stroke(); });
+      /* pelari */
+      const ph = st === "play" ? dist * .09 : 0, air = y < G, sw = air ? .6 : Math.sin(ph * 2) * .9;
+      c.save(); c.translate(RX, y); c.strokeStyle = fg; c.fillStyle = fg; c.lineWidth = 5; c.lineCap = "round";
+      c.beginPath(); c.moveTo(0, -16); c.lineTo(-sw * 14, 0); c.moveTo(0, -16); c.lineTo(sw * 14, air ? -2 : 0); c.stroke();
+      c.beginPath(); c.moveTo(2, -36); c.lineTo(0, -16); c.stroke();
+      c.beginPath(); c.moveTo(2, -32); c.lineTo(sw * 12 + 4, -22); c.moveTo(2, -32); c.lineTo(-sw * 12 + 4, -22); c.stroke();
+      c.beginPath(); c.arc(5, -44, 6, 0, 7); c.fill();
+      c.fillStyle = gold; c.fillRect(-2, -34, 10, 9); c.restore();
+      c.fillStyle = mu; c.font = "500 14px Jost, sans-serif"; c.textAlign = "right"; c.fillText(String(score()), W - 12, 22);
+      if (st !== "play") {
+        c.textAlign = "center"; c.fillStyle = css("--ink"); c.font = "600 24px Jost, sans-serif";
+        c.fillText(st === "over" ? "Selesai · skor " + score() : "Ketuk untuk mulai", W / 2, 70);
+        if (st === "over") { c.fillStyle = mu; c.font = "400 15px Jost, sans-serif"; c.fillText("Ketuk lagi untuk main ulang", W / 2, 96); }
+      }
+    }
+    cvs.addEventListener("pointerdown", e => { e.preventDefault(); act(); });
+    cvs.addEventListener("keydown", e => { if (e.code === "Space" || e.code === "ArrowUp" || e.code === "Enter") { e.preventDefault(); act(); } });
+    new IntersectionObserver(es => { vis = es[0].isIntersecting; vis ? run() : stop(); }).observe(cvs);
+    document.addEventListener("visibilitychange", () => document.hidden ? stop() : run());
+    new MutationObserver(() => { if (st !== "play") draw(); }).observe(root, {attributes:true, attributeFilter:["data-theme"]});
+    reset(); draw(); (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { if (st !== "play") draw(); });
+  })();
 
   if (GOATCOUNTER.trim()) {
     const g = document.createElement("script");
