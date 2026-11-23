@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Simulator Bib · NYOTNYOT MARKET</title>
-<meta name="description" content="Desain magnet bib bulat atau bib persegi, lihat hasilnya langsung, simpan PNG, lalu kirim ke admin.">
+<meta name="description" content="Upload fotomu, lihat magnet bib 16 mm dengan resin bening di keempat sudut, simpan PNG, lalu kirim ke admin.">
 <meta name="theme-color" content="#0e2620">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,7 +47,7 @@ canvas{display:block;width:100%;height:auto;border:1px solid var(--line);border-
 <main class="wrap">
   <div class="top"><a href="index.html">← Kembali</a><a href="toko.html">Ke toko</a></div>
   <h1>Simulator Bib</h1>
-  <p class="sub">Atur desain, lihat hasilnya langsung, simpan PNG, lalu kirim ke admin.</p>
+  <p class="sub">Upload foto, lihat hasilnya di dalam resin, simpan PNG, lalu kirim ke admin.</p>
   <div class="tabs" role="group" aria-label="Tampilan"><button class="chip" type="button" id="tR" aria-pressed="true">Magnet bulat</button><button class="chip" type="button" id="tB" aria-pressed="false">Bib persegi</button></div>
   <canvas id="cv" width="1200" height="600" role="img" aria-label="Pratinjau desain"></canvas>
   <div class="g">
@@ -56,7 +56,7 @@ canvas{display:block;width:100%;height:auto;border:1px solid var(--line);border-
     <label class="f">Tulisan kecil (komunitas / event)<input type="text" id="tg" maxlength="24" placeholder="NYOTNYOT MARKET" autocomplete="off"></label>
     <label class="f">Font<select id="ft"><option>Klasik</option><option>Modern</option><option>Tebal</option></select></label>
     <div class="f w">Warna latar<div class="sw" id="sw"></div></div>
-    <label class="f w">Foto atau logo (nanti ada di dalam resin bening)<input type="file" id="lg" accept="image/*"></label>
+    <label class="f w">Foto atau logo (akan ada di dalam resin bening)<input type="file" id="lg" accept="image/*"></label>
     <div class="f w" id="pz" hidden><label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="ot"> Tambahkan tulisan di atas foto</label><label>Zoom<input type="range" id="zm" min="1" max="3" step=".05" value="1"></label><label>Geser kiri–kanan<input type="range" id="gx" min="-100" max="100" value="0"></label><label>Geser atas–bawah<input type="range" id="gy" min="-100" max="100" value="0"></label></div>
   </div>
   <div class="act"><button class="btn p" type="button" id="sv">Simpan PNG</button><button class="btn" type="button" id="wa">Kirim ke WhatsApp</button><button class="btn" type="button" id="rd">Acak</button></div>
