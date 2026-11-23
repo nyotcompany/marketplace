@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Toko Bib Number · NYOTNYOT.MARKET</title>
+<meta name="description" content="Belanja produk Bib Number. Pilih produk, masukkan keranjang, pesan lewat WhatsApp atau Shopee.">
+<meta name="theme-color" content="#0e2620">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e2620'/%3E%3Ctext x='32' y='44' font-size='32' font-weight='700' text-anchor='middle' fill='%23d9bf8a' font-family='Georgia,serif'%3EBN%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e2620;--bg2:#16362d;--ivory:#f4f2ec;--ivory2:#ebe8df;--ink:#12201b;--muted:#5b6660;
+  --gold:#a8844a;--gold-lt:#d9bf8a;--line:#cfc8b6;--tone:#8a6a33;
+  --display:"Cormorant Garamond",Georgia,serif;--body:Jost,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:70px}
+body{margin:0;background:var(--ivory);color:var(--ink);font-family:var(--body);line-height:1.5;padding-bottom:env(safe-area-inset-bottom)}
+[hidden]{display:none!important}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.bar{position:sticky;top:0;z-index:20;background:var(--bg);color:var(--ivory);padding:calc(10px + env(safe-area-inset-top)) 16px 10px;display:flex;align-items:center;gap:12px;box-shadow:0 1px 0 rgba(217,191,138,.35)}
+.brand{font-family:var(--display);font-weight:600;font-size:24px;line-height:1;text-decoration:none;color:var(--ivory);flex:1}
+.brand small{display:block;font:400 11px var(--body);letter-spacing:.1em;color:var(--gold-lt);margin-top:3px}
+.cartbtn{position:relative;display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;border:1px solid var(--gold);background:transparent;color:var(--gold-lt);cursor:pointer;min-height:44px}
+.cartbtn svg{width:20px;height:20px}
+.cartbtn b{min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:var(--gold-lt);color:var(--ink);font-size:12px;display:grid;place-items:center}
+.hero{background:radial-gradient(ellipse at 50% 0%,var(--bg2),var(--bg) 70%);color:var(--ivory);text-align:center;padding:34px 20px 40px}
+.hero h1{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(38px,9vw,64px);line-height:1}
+.hero p{margin:12px auto 0;max-width:34ch;color:#c9d2cc}
+.hero .how{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:18px;font-size:13px}
+.hero .how span{padding:5px 14px;border:1px solid rgba(217,191,138,.5);border-radius:999px;color:var(--gold-lt)}
+.tools{position:sticky;top:calc(64px + env(safe-area-inset-top));z-index:10;background:var(--ivory);border-bottom:1px solid var(--line);padding:12px 16px;display:grid;gap:10px;max-width:1100px;margin:0 auto}
+.row{display:flex;gap:10px}
+.search{flex:1;min-width:0;padding:11px 16px;border:1px solid var(--line);border-radius:999px;background:#fff}
+select{padding:11px 14px;border:1px solid var(--line);border-radius:999px;background:#fff}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.chip{flex:none;padding:8px 16px;border-radius:999px;border:1px solid var(--gold);background:transparent;cursor:pointer;font-size:14px;min-height:40px}
+.chip[aria-pressed=true]{background:var(--bg);color:var(--gold-lt);border-color:var(--bg)}
+main{max-width:1100px;margin:0 auto;padding:18px 16px 40px}
+.count{font-size:14px;color:var(--muted);margin:0 0 12px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(3,1fr);gap:16px}}
+@media(min-width:960px){.grid{grid-template-columns:repeat(4,1fr)}}
+.card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.pic{position:relative;aspect-ratio:1;background:linear-gradient(135deg,var(--bg2),var(--bg));display:grid;place-items:center;border:0;padding:0;cursor:pointer;width:100%}
+.pic img{width:100%;height:100%;object-fit:cover;display:block}
+.pic i{font:600 44px var(--display);font-style:normal;color:var(--gold-lt);opacity:.85}
+.tag{position:absolute;left:8px;top:8px;padding:3px 10px;border-radius:999px;background:var(--gold-lt);color:var(--ink);font-size:12px;font-weight:500}
+.info{padding:12px;display:flex;flex-direction:column;gap:4px;flex:1}
+.cat{font-size:12px;color:var(--muted)}
+.nm{margin:0;font-family:var(--display);font-weight:600;font-size:21px;line-height:1.1}
+.pr{font-weight:500;color:var(--tone)}
+.pr s{margin-left:6px;font-weight:400;font-size:13px;color:var(--muted)}
+.add{margin-top:auto;padding:10px;border-radius:999px;border:1px solid var(--bg);background:var(--bg);color:var(--gold-lt);cursor:pointer;min-height:44px}
+.add:hover{background:var(--gold-lt);color:var(--ink);border-color:var(--gold-lt)}
+.empty{text-align:center;padding:50px 20px;color:var(--muted)}
+footer{background:var(--bg);color:#c9d2cc;text-align:center;padding:26px 20px calc(26px + env(safe-area-inset-bottom));font-size:14px}
+footer a{color:var(--gold-lt)}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:40}
+.sheet{position:fixed;z-index:50;background:var(--ivory);display:flex;flex-direction:column;box-shadow:0 0 40px rgba(0,0,0,.4)}
+.cartsheet{top:0;right:0;bottom:0;width:min(100%,420px)}
+.sh-h{display:flex;align-items:center;justify-content:space-between;padding:calc(14px + env(safe-area-inset-top)) 18px 14px;border-bottom:1px solid var(--line)}
+.sh-h h2{margin:0;font-family:var(--display);font-weight:600;font-size:26px}
+.x{width:44px;height:44px;border:0;border-radius:50%;background:transparent;font-size:26px;cursor:pointer;line-height:1}
+.items{flex:1;overflow-y:auto;padding:6px 18px}
+.it{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.it .t{flex:1;min-width:0}.it .t b{display:block;font-weight:500}.it .t span{font-size:14px;color:var(--muted)}
+.qty{display:flex;align-items:center;gap:4px}
+.qty button{width:34px;height:34px;border-radius:50%;border:1px solid var(--gold);background:transparent;cursor:pointer;font-size:18px;line-height:1}
+.qty span{min-width:22px;text-align:center}
+.foot{padding:14px 18px calc(14px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:var(--ivory2);display:grid;gap:10px}
+.tot{display:flex;justify-content:space-between;font-weight:500;font-size:18px}
+.note{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.btn{display:block;text-align:center;text-decoration:none;padding:13px 18px;border-radius:999px;border:1px solid var(--gold);background:transparent;cursor:pointer;min-height:46px;font-weight:500}
+.btn.p{background:var(--bg);color:var(--gold-lt);border-color:var(--bg)}
+.btn:hover{background:var(--gold-lt);color:var(--ink);border-color:var(--gold-lt)}
+.dtl{left:0;right:0;bottom:0;max-height:88vh;border-radius:18px 18px 0 0;overflow-y:auto}
+@media(min-width:700px){.dtl{left:50%;right:auto;bottom:auto;top:50%;transform:translate(-50%,-50%);width:480px;border-radius:14px}}
+.dtl .pic{aspect-ratio:16/10;cursor:default}
+.dtl .body{padding:16px 18px calc(18px + env(safe-area-inset-bottom));display:grid;gap:10px}
+.dtl h2{margin:0;font-family:var(--display);font-weight:600;font-size:30px;line-height:1.05}
+.dtl p{margin:0;color:var(--muted)}
+.toast{position:fixed;left:16px;right:16px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:60;margin:0 auto;max-width:380px;padding:11px 16px;border-radius:12px;background:var(--bg);color:var(--gold-lt);text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+@media(prefers-reduced-motion:no-preference){.sheet{animation:in .25s ease-out}@keyframes in{from{opacity:0;transform:translateY(16px)}}.cartsheet{animation:slide .25s ease-out}@keyframes slide{from{transform:translateX(30px);opacity:0}}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="brand" href="#">Bib Number<small>NYOTNYOT.MARKET</small></a>
+  <button class="cartbtn" id="openCart" aria-label="Buka keranjang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg>Keranjang <b id="cnt">0</b></button>
+</header>
+
+<section class="hero">
+  <h1>Toko Bib Number</h1>
+  <p>Pilih produk, masukkan keranjang, lalu pesan lewat WhatsApp atau Shopee.</p>
+  <div class="how"><span>Pilih produk</span><span>Isi keranjang</span><span>Kirim pesanan</span></div>
+</section>
+
+<div class="tools">
+  <div class="row">
+    <input class="search" id="q" type="search" placeholder="Cari produk" aria-label="Cari produk">
+    <select id="sort" aria-label="Urutkan">
+      <option value="def">Urutan toko</option><option value="low">Harga terendah</option><option value="high">Harga tertinggi</option><option value="az">Nama A–Z</option>
+    </select>
+  </div>
+  <div class="chips" id="chips" role="group" aria-label="Kategori"></div>
+</div>
+
+<main>
+  <p class="count" id="count" role="status" aria-live="polite"></p>
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty" hidden>Produk tidak ditemukan. Coba kata kunci atau kategori lain.</div>
+</main>
+
+<footer>
+  <p style="margin:0 0 8px">Belanja juga di <a href="#" id="shopeeLink" target="_blank" rel="noopener noreferrer">Shopee</a>, <a href="https://www.instagram.com/bib.number/" target="_blank" rel="noopener noreferrer">Instagram</a>, <a href="https://www.threads.com/@bib.number" target="_blank" rel="noopener noreferrer">Threads</a></p>
+  <p style="margin:0">© <span id="yr"></span> Bib Number · NYOTNYOT.MARKET</p>
+</footer>
+
+<div id="layer"></div>
+<p class="toast" id="toast" role="status" hidden></p>
+
+<script>
+/* ===== PENGATURAN TOKO: ubah di sini ===== */
+const WA_NUMBER = "";   // contoh: "6281234567890" (kode negara tanpa +). Kosong = pesanan disalin ke clipboard.
+const SHOPEE_URL = "https://shopee.co.id/nyotnyotmarket";
+const WA_OPEN = "Halo Bib Number, saya mau pesan:";
+/* Daftar produk (diambil dari toko Shopee nyotnyotmarket).
+   Kolom: id unik, name, price (angka rupiah), old (harga coret, opsional), cat, desc,
+   img (URL gambar), tag (label, opsional), shopee (tautan produk di Shopee) */
+const PRODUCTS = [
+  {id:"p29607282618", name:"Magnet Bib Number Special Edition", price:50000, cat:"Magnet Bib Number", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-7r98u-lynqoqsgd6fycd@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/29607282618"},
+  {id:"p28270566548", name:"Magnet Bib Number - Black", price:50000, cat:"Magnet Bib Number", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-7rasg-m3q80zls6psfe4@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/28270566548"},
+  {id:"p40672627970", name:"Setelan Celana Tenis & Kaos Tes TNI POLRI Kedinasan", price:30000, cat:"Pakaian Tes", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-81ztc-mf12b21icvf244@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/40672627970"},
+  {id:"p26870506065", name:"Magnet Bib Number - White", price:50000, cat:"Magnet Bib Number", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-7rasf-m3p5bby2amema3@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/26870506065"},
+  {id:"p25439473390", name:"Magnet Bib Number - Orange", price:50000, cat:"Magnet Bib Number", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-7rasf-m3teuh8v5d5o06@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/25439473390"},
+  {id:"p26574203143", name:"Magnet Bib Number - Own", price:50000, cat:"Magnet Bib Number", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-7rase-m5ayzef2iznq98@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/26574203143"},
+  {id:"p43667942775", name:"Pin BGN Timbul Kuningan Magnet Premium", price:20000, cat:"Pin & ID Card", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-81ztq-med7k9v28vltd4@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/43667942775"},
+  {id:"p24290565286", name:"Magnet Bib Custom Komunitas & Event (Lari & Keychain)", price:46000, cat:"Magnet Bib Number", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-7rash-m5hx1selximwd7@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/24290565286"},
+  {id:"p26159073530", name:"Clip Bib Number Premium untuk Marathon & Trail Run", price:25000, cat:"Clip Bib Number", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-7r98r-lzd7u9fvb0f2e1@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/26159073530"},
+  {id:"p26467635362", name:"Kotak Box Transparan 45mm", price:5000, cat:"Aksesoris", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-7rase-m2kyxsp2uisgfe@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/26467635362"},
+  {id:"p27662700393", name:"Magnet Bib Number Race Edition", price:40000, cat:"Magnet Bib Number", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-7rask-m2xegrz9y3fxc8@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/27662700393"},
+  {id:"p27589458138", name:"Pin BGN SPPI", price:30000, cat:"Pin & ID Card", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-7ra0u-mcz1roxwu71jb2@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/27589458138"},
+  {id:"p45916039141", name:"Yoyo ID Card Koperasi Desa Merah Putih (Kopdes)", price:20000, cat:"Pin & ID Card", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134201-81ztq-mrvt0osrnc3q9e@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/45916039141"},
+  {id:"p51913809709", name:"Custom Nametag / Papan Nama", price:20000, cat:"Pin & ID Card", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-81ztp-mqj2einfqz9cad@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/51913809709"},
+  {id:"p26420561583", name:"Magnet Bib Number - Yellow", price:50000, cat:"Magnet Bib Number", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-7rasj-m3q7v3h4klwa9e@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/26420561583"},
+  {id:"p51116564135", name:"Magnet Bib Number - PlayStation", price:50000, cat:"Magnet Bib Number", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134201-81ztg-ms9q2oytwa2u9a@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/51116564135"},
+  {id:"p45109808185", name:"Topi Tactical Satpam", price:40000, cat:"Topi", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-822wp-mnpdc5dkjeh273@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/45109808185"},
+  {id:"p29008534006", name:"Clip Bib Number untuk Marathon / Trail Run / Cycling", price:25000, cat:"Clip Bib Number", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-7r98y-lz7bybiltm1nc0@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/29008534006"},
+  {id:"p27870754593", name:"Magnet Bib Number - Grey", price:50000, cat:"Magnet Bib Number", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-7rasf-m3teuh8v5d5o06@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/27870754593"},
+  {id:"p41772471038", name:"Topi Tactical Coak Laser Tawon", price:40000, cat:"Topi", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-81ztl-mf9wkz0j5fd513@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/41772471038"},
+  {id:"p52004606502", name:"Pin Korpri Premium (Sesuai SK Peraturan)", price:20000, cat:"Pin & ID Card", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-8224p-mjfkgoy3gmbmc7@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/52004606502"},
+  {id:"p28024198817", name:"Magnet Bib Number - On", price:50000, cat:"Magnet Bib Number", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-7rasg-m5az8rymkp0848@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/28024198817"},
+  {id:"p29875236086", name:"Magnet Bib Number - Pastel Color", price:50000, cat:"Magnet Bib Number", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-7ras8-m5w8zqqlkr1k09@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/29875236086"},
+  {id:"p42817295421", name:"Topi Tactical Kemhan Coak Cream Hitam", price:60000, cat:"Topi", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-81ztm-me6xt6q48r9j29@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/42817295421"},
+  {id:"p28075140833", name:"Magnet Bib Number - BTN Jakim", price:60000, cat:"Magnet Bib Number", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-7rasd-m5v92ujteema7a@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/28075140833"},
+  {id:"p27220510313", name:"Magnet Bib Number Biru untuk Runner Marathon", price:50000, cat:"Magnet Bib Number", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-7rase-m3p5bby2c19403@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/27220510313"},
+  {id:"p29624876736", name:"Keychain Maroon 5 - Asia 2025", price:2000, cat:"Aksesoris", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-7ras9-m5odo1zhupjnc7@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/29624876736"},
+  {id:"p26440624775", name:"Patch Topi Custom", price:40000, cat:"Topi", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-81ztm-mdzssgfymj2ccc@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/26440624775"},
+  {id:"p27773309373", name:"Celana Tenis - Celana Tes TNI POLRI Kedinasan CPNS BUMN", price:35000, cat:"Pakaian Tes", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-7rasi-m4xavl4un7d288@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/27773309373"},
+  {id:"p26270765316", name:"Magnet Bib Number Pink", price:50000, cat:"Magnet Bib Number", desc:"Lihat detail, varian, dan ulasan lengkap di Shopee.", img:"https://down-id.img.susercontent.com/file/id-11134207-7rasf-m3teuh8v5d5o06@resize_w640_nl.webp", shopee:"https://shopee.co.id/product/811917472/26270765316"}
+];
+/* ========================================= */
+
+const $ = id => document.getElementById(id);
+const rp = n => new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(n);
+function h(tag, props, ...kids){
+  const e = document.createElement(tag);
+  for (const k in (props||{})) { if (k === "class") e.className = props[k]; else if (k.startsWith("on")) e.addEventListener(k.slice(2), props[k]); else e.setAttribute(k, props[k]); }
+  kids.flat().forEach(c => e.append(c));
+  return e;
+}
+const ls = { get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }, set(k,v){ try { localStorage.setItem(k,v); } catch(e){} } };
+
+$("yr").textContent = new Date().getFullYear();
+$("shopeeLink").href = SHOPEE_URL;
+
+let cart = {}; try { cart = JSON.parse(ls.get("bn-cart") || "{}") || {}; } catch(e){}
+const byId = id => PRODUCTS.find(p => p.id === id);
+Object.keys(cart).forEach(id => { if (!byId(id)) delete cart[id]; });
+const save = () => ls.set("bn-cart", JSON.stringify(cart));
+const total = () => Object.entries(cart).reduce((s,[id,q]) => s + byId(id).price * q, 0);
+const qtyAll = () => Object.values(cart).reduce((s,q) => s + q, 0);
+
+let toastT;
+function toast(t){ const el = $("toast"); el.textContent = t; el.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => el.hidden = true, 2200); }
+
+/* ---- katalog ---- */
+let cat = "Semua";
+const cats = ["Semua", ...new Set(PRODUCTS.map(p => p.cat))];
+function drawChips(){
+  $("chips").replaceChildren(...cats.map(c => h("button", {class:"chip", type:"button", "aria-pressed": c === cat, onclick(){ cat = c; drawChips(); drawGrid(); }}, c)));
+}
+function thumb(p){ return p.img ? h("img", {src:p.img, alt:p.name, loading:"lazy", referrerpolicy:"no-referrer"}) : h("i", {"aria-hidden":"true"}, p.name.trim()[0] || "B"); }
+function drawGrid(){
+  const q = $("q").value.trim().toLowerCase(), s = $("sort").value;
+  let list = PRODUCTS.filter(p => (cat === "Semua" || p.cat === cat) && (p.name + " " + p.desc + " " + p.cat).toLowerCase().includes(q));
+  if (s === "low") list.sort((a,b) => a.price - b.price);
+  if (s === "high") list.sort((a,b) => b.price - a.price);
+  if (s === "az") list.sort((a,b) => a.name.localeCompare(b.name, "id"));
+  $("count").textContent = list.length + " produk";
+  $("empty").hidden = list.length > 0;
+  $("grid").replaceChildren(...list.map(p => h("article", {class:"card"},
+    h("button", {class:"pic", type:"button", "aria-label":"Lihat detail " + p.name, onclick(){ detail(p); }}, thumb(p), p.tag ? h("span", {class:"tag"}, p.tag) : ""),
+    h("div", {class:"info"},
+      h("span", {class:"cat"}, p.cat),
+      h("h3", {class:"nm"}, p.name),
+      h("div", {class:"pr"}, rp(p.price), p.old ? h("s", {}, rp(p.old)) : ""),
+      h("button", {class:"add", type:"button", onclick(){ add(p.id); }}, "Tambah ke keranjang")))));
+}
+$("q").addEventListener("input", drawGrid);
+$("sort").addEventListener("change", drawGrid);
+
+/* ---- keranjang ---- */
+function add(id, n = 1){
+  cart[id] = Math.max(0, (cart[id] || 0) + n);
+  if (!cart[id]) delete cart[id];
+  save(); badge();
+  if (n > 0) toast(byId(id).name + " masuk keranjang");
+  if ($("cartSheet")) drawCart();
+}
+function badge(){ $("cnt").textContent = qtyAll(); }
+
+function orderText(note){
+  const lines = Object.entries(cart).map(([id,q]) => "- " + byId(id).name + " x" + q + " = " + rp(byId(id).price * q));
+  return WA_OPEN + "\n" + lines.join("\n") + "\nTotal: " + rp(total()) + (note ? "\nCatatan: " + note : "");
+}
+function closeLayer(){ $("layer").replaceChildren(); document.body.style.overflow = ""; }
+function openLayer(...nodes){ $("layer").replaceChildren(h("div", {class:"scrim", onclick:closeLayer}), ...nodes); document.body.style.overflow = "hidden"; }
+
+function drawCart(){
+  const box = $("cartSheet"), ids = Object.keys(cart);
+  const note = box.querySelector(".note") ? box.querySelector(".note").value : "";
+  box.replaceChildren(
+    h("div", {class:"sh-h"}, h("h2", {}, "Keranjang"), h("button", {class:"x", type:"button", "aria-label":"Tutup", onclick:closeLayer}, "×")),
+    h("div", {class:"items"}, ids.length ? ids.map(id => { const p = byId(id);
+      return h("div", {class:"it"},
+        h("div", {class:"t"}, h("b", {}, p.name), h("span", {}, rp(p.price))),
+        h("div", {class:"qty"},
+          h("button", {type:"button", "aria-label":"Kurangi " + p.name, onclick(){ add(id, -1); }}, "−"),
+          h("span", {"aria-live":"polite"}, cart[id]),
+          h("button", {type:"button", "aria-label":"Tambah " + p.name, onclick(){ add(id, 1); }}, "+")));
+    }) : h("p", {class:"empty"}, "Keranjang masih kosong.")),
+    ids.length ? h("div", {class:"foot"},
+      h("div", {class:"tot"}, h("span", {}, "Total"), h("span", {}, rp(total()))),
+      h("input", {class:"note", placeholder:"Catatan (ukuran, warna, alamat)", value:note}),
+      h("button", {class:"btn p", type:"button", onclick(){ checkout(box.querySelector(".note").value.trim()); }}, "Pesan via WhatsApp"),
+      h("a", {class:"btn", href:SHOPEE_URL, target:"_blank", rel:"noopener noreferrer"}, "Lanjut di Shopee"),
+      h("button", {class:"btn", type:"button", onclick(){ cart = {}; save(); badge(); drawCart(); }}, "Kosongkan keranjang")) : "");
+}
+async function checkout(note){
+  const text = orderText(note);
+  if (WA_NUMBER.trim()) { window.open("https://wa.me/" + WA_NUMBER.replace(/\D/g, "") + "?text=" + encodeURIComponent(text), "_blank", "noopener"); return; }
+  try { await navigator.clipboard.writeText(text); toast("Pesanan disalin. Tempel di chat penjual."); }
+  catch(e){ toast("Nomor WhatsApp belum diisi dan salin gagal."); }
+}
+$("openCart").addEventListener("click", () => { openLayer(h("aside", {class:"sheet cartsheet", id:"cartSheet", role:"dialog", "aria-modal":"true", "aria-label":"Keranjang"})); drawCart(); });
+
+/* ---- detail produk ---- */
+function detail(p){
+  openLayer(h("section", {class:"sheet dtl", role:"dialog", "aria-modal":"true", "aria-label":p.name},
+    h("div", {class:"pic"}, thumb(p), h("button", {class:"x", type:"button", "aria-label":"Tutup", style:"position:absolute;right:6px;top:6px;background:var(--ivory)", onclick:closeLayer}, "×")),
+    h("div", {class:"body"},
+      h("span", {class:"cat"}, p.cat),
+      h("h2", {}, p.name),
+      h("div", {class:"pr"}, rp(p.price), p.old ? h("s", {}, rp(p.old)) : ""),
+      h("p", {}, p.desc),
+      h("button", {class:"btn p", type:"button", onclick(){ add(p.id); closeLayer(); }}, "Tambah ke keranjang"),
+      h("a", {class:"btn", href:p.shopee || SHOPEE_URL, target:"_blank", rel:"noopener noreferrer"}, "Beli di Shopee"))));
+}
+addEventListener("keydown", e => { if (e.key === "Escape") closeLayer(); });
+
+drawChips(); drawGrid(); badge();
+</script>
+</body>
+</html>
