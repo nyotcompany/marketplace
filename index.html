@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Bib Number · NYOTNYOT.MARKET — Tautan Resmi</title>
-<meta name="description" content="Belanja di Shopee, tonton di TikTok, dan ikuti Bib Number di Instagram dan Threads.">
+<title>NYOTNYOT MARKET · Bib Number — Tautan Resmi</title>
+<meta name="description" content="Belanja di Shopee, tonton di TikTok, dan ikuti NYOTNYOT MARKET di Instagram dan Threads.">
 <meta name="theme-color" content="#0e2620">
 <link rel="canonical" href="https://nyotcompany.github.io/marketplace/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Bib Number · NYOTNYOT.MARKET — Tautan Resmi">
-<meta property="og:description" content="Belanja di Shopee, tonton di TikTok, dan ikuti Bib Number di Instagram dan Threads.">
+<meta property="og:title" content="NYOTNYOT MARKET · Bib Number — Tautan Resmi">
+<meta property="og:description" content="Belanja di Shopee, tonton di TikTok, dan ikuti NYOTNYOT MARKET di Instagram dan Threads.">
 <meta property="og:url" content="https://nyotcompany.github.io/marketplace/">
 <meta property="og:image" content="https://nyotcompany.github.io/marketplace/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -53,7 +53,7 @@ body{
 .tool:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .top{padding:50px 28px 14px;text-align:center}
 .tagline{margin:0 0 8px;font-size:14px;letter-spacing:.08em;color:var(--tone)}
-h1{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(58px,18vw,84px);line-height:.92;letter-spacing:-.01em}
+h1{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(40px,12vw,58px);line-height:.92;letter-spacing:-.01em}
 h1 em{display:block;font-weight:500}
 .store{display:flex;align-items:center;gap:12px;margin:14px 0 0}
 .store::before,.store::after{content:"";flex:1;border-top:1px solid var(--gold);opacity:.6}
@@ -172,8 +172,8 @@ a,button,.track{-webkit-tap-highlight-color:transparent;touch-action:manipulatio
   </div>
   <header class="top">
     <p class="tagline" id="greet">Tautan resmi</p>
-    <h1>Bib <em>Number</em></h1>
-    <p class="store"><span>NYOTNYOT.MARKET</span></p>
+    <h1>NYOTNYOT <em>MARKET</em></h1>
+    <p class="store"><span>BIB NUMBER</span></p>
     <p class="sub">Belanja produk kami, tonton videonya, dan ikuti kabar terbarunya.</p>
     <p class="hours" id="hours" hidden><i></i><span></span></p>
   </header>
@@ -236,11 +236,11 @@ a,button,.track{-webkit-tap-highlight-color:transparent;touch-action:manipulatio
   </div>
   <p class="status" id="status" role="status" aria-live="polite"></p>
 
-  <footer class="foot">© <span id="year"></span> Bib Number · NYOTNYOT.MARKET</footer>
+  <footer class="foot">© <span id="year"></span> NYOTNYOT MARKET · Bib Number</footer>
 </main>
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"Bib Number · NYOTNYOT.MARKET","url":"https://nyotcompany.github.io/marketplace/","sameAs":["https://www.instagram.com/bib.number/","https://www.threads.com/@bib.number"]}
+{"@context":"https://schema.org","@type":"Organization","name":"NYOTNYOT MARKET","url":"https://nyotcompany.github.io/marketplace/","sameAs":["https://www.instagram.com/bib.number/","https://www.threads.com/@bib.number"]}
 </script>
 <script>
   /* ===== PENGATURAN: ubah di sini ===== */
@@ -248,7 +248,7 @@ a,button,.track{-webkit-tap-highlight-color:transparent;touch-action:manipulatio
   const PROMO      = "";  // contoh: "Diskon 10% untuk pembelian pertama" — kosong = banner disembunyikan
   const PROMO_END  = "";  // contoh: "2026-12-31T23:59:00+07:00" — hitung mundur di banner; kosong = tanpa hitung mundur
   const WA_NUMBER  = "";  // contoh: "6281234567890" (kode negara tanpa +, tanpa 0 di depan). Kosong = tombol disembunyikan.
-  const WA_TEXT    = "Halo Bib Number, saya mau tanya produknya.";
+  const WA_TEXT    = "Halo NYOTNYOT MARKET, saya mau tanya produknya.";
   const HOURS      = null; // contoh: {open:9, close:21} (jam WIB). null = status buka/tutup disembunyikan
   const PRODUCTS   = [];  // contoh: [{name:"Kaos Lari", price:"Rp129.000", url:"https://..."}]
   const FAQ        = [];  // contoh: [["Kirim dari mana?","Dari Jakarta."]]
@@ -382,7 +382,7 @@ a,button,.track{-webkit-tap-highlight-color:transparent;touch-action:manipulatio
   shareBtn.addEventListener("click", async () => {
     const copied = copyText(PAGE_URL);
     try {
-      await navigator.share({title: "Bib Number · NYOTNYOT.MARKET", text: "Tautan resmi Bib Number", url: PAGE_URL});
+      await navigator.share({title: "NYOTNYOT MARKET · Bib Number", text: "Tautan resmi NYOTNYOT MARKET", url: PAGE_URL});
       if (await copied) say("Tautan juga sudah disalin.");
     } catch (e) {
       if (e && e.name === "AbortError") { if (await copied) say("Tautan sudah disalin."); }
