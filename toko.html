@@ -345,7 +345,7 @@ function detail(p){
 function route(){ const p = byId(location.hash.slice(1)); if (p) detail(p); else if ($("layer").querySelector(".dtl")) closeLayer(); }
 
 /* ---- pesanan custom ---- */
-function customForm(){
+function customForm(pre){
   const f = {};
   const mk = (k, el) => { f[k] = el; return h("label", {class:"fld"}, h("span", {}, k), el); };
   const inp = (ph, type) => h("input", {placeholder:ph, type:type || "text", maxlength:"120"});
@@ -362,13 +362,14 @@ function customForm(){
       mk("Catatan", h("textarea", {rows:"3", maxlength:"300"}))),
     h("div", {class:"foot"}, h("button", {class:"btn p", type:"button", onclick(){
       const v = k => f[k].value.trim();
-      if (!v("Nama komunitas / event") || !(+v("Jumlah") > 0)) { toast("Isi nama komunitas/event dan jumlah."); return; }
+      if (!(v("Nama komunitas / event") || v("Tulisan / nomor bib")) || !(+v("Jumlah") > 0)) { toast("Isi nama komunitas/event atau tulisan, dan jumlah."); return; }
       const rows = Object.keys(f).filter(k => v(k)).map(k => k + ": " + v(k));
       sendWA(WA_OPEN.replace("pesan:", "pesan CUSTOM:") + "\n" + rows.join("\n"));
     }}, "Kirim via WhatsApp")));
   openLayer(box);
+  if (pre) { const q = new URLSearchParams(location.search); f["Tulisan / nomor bib"].value = [q.get("nama"), q.get("nomor")].filter(Boolean).join(" "); f["Warna"].value = q.get("warna") || ""; history.replaceState(null, "", location.pathname); }
 }
-$("openCustom").addEventListener("click", customForm);
+$("openCustom").addEventListener("click", () => customForm());
 
 /* ---- FAQ ---- */
 $("faqList").replaceChildren(...FAQ.map(x => h("details", {}, h("summary", {}, x[0]), h("p", {}, x[1]))));
@@ -376,6 +377,7 @@ $("faqList").replaceChildren(...FAQ.map(x => h("details", {}, h("summary", {}, x
 addEventListener("keydown", e => { if (e.key === "Escape") closeLayer(); });
 addEventListener("hashchange", route);
 drawChips(); drawGrid(); badge(); route();
+if (new URLSearchParams(location.search).get("custom")) customForm(true);
 </script>
 </body>
 </html>
