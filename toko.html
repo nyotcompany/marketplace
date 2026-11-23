@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Toko Bib Number · NYOTNYOT.MARKET</title>
-<meta name="description" content="Belanja produk Bib Number. Pilih produk, masukkan keranjang, pesan lewat WhatsApp atau Shopee.">
+<title>NYOTNYOT MARKET · Toko Bib Number</title>
+<meta name="description" content="NYOTNYOT MARKET: magnet bib, clip bib, pin, dan nametag custom. Pesan lewat WhatsApp atau Shopee.">
 <meta name="theme-color" content="#0e2620">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e2620'/%3E%3Ctext x='32' y='44' font-size='32' font-weight='700' text-anchor='middle' fill='%23d9bf8a' font-family='Georgia,serif'%3EBN%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +23,7 @@ body{margin:0;background:var(--ivory);color:var(--ink);font-family:var(--body);l
 button,input,select{font:inherit;color:inherit}
 :focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .bar{position:sticky;top:0;z-index:20;background:var(--bg);color:var(--ivory);padding:calc(10px + env(safe-area-inset-top)) 16px 10px;display:flex;align-items:center;gap:12px;box-shadow:0 1px 0 rgba(217,191,138,.35)}
-.brand{font-family:var(--display);font-weight:600;font-size:24px;line-height:1;text-decoration:none;color:var(--ivory);flex:1}
+.brand{font-family:var(--display);font-weight:600;font-size:22px;line-height:1;text-decoration:none;color:var(--ivory);flex:1}
 .brand small{display:block;font:400 11px var(--body);letter-spacing:.1em;color:var(--gold-lt);margin-top:3px}
 .cartbtn{position:relative;display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;border:1px solid var(--gold);background:transparent;color:var(--gold-lt);cursor:pointer;min-height:44px}
 .cartbtn svg{width:20px;height:20px}
@@ -86,18 +86,34 @@ footer a{color:var(--gold-lt)}
 .dtl p{margin:0;color:var(--muted)}
 .toast{position:fixed;left:16px;right:16px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:60;margin:0 auto;max-width:380px;padding:11px 16px;border-radius:12px;background:var(--bg);color:var(--gold-lt);text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.35)}
 @media(prefers-reduced-motion:no-preference){.sheet{animation:in .25s ease-out}@keyframes in{from{opacity:0;transform:translateY(16px)}}.cartsheet{animation:slide .25s ease-out}@keyframes slide{from{transform:translateX(30px);opacity:0}}}
+.card{position:relative}
+.card.off .pic img{opacity:.45}
+.card.off .add,.btn[disabled]{opacity:.55;cursor:not-allowed}
+.tag.sold{background:var(--ink);color:var(--ivory)}
+.fav{position:absolute;right:8px;top:8px;width:36px;height:36px;border-radius:50%;border:0;background:rgba(244,242,236,.92);color:var(--tone);font-size:20px;cursor:pointer;line-height:1}
+.fav[aria-pressed=true]{color:#b4372f}
+.fld{display:grid;gap:4px;font-size:14px;margin:0 0 12px}
+.fld input,.fld select,.fld textarea{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.hint{font-size:13px;color:var(--muted);margin:0 0 12px}
+.cbtn{margin-top:16px;padding:11px 22px;border-radius:999px;border:1px solid var(--gold-lt);background:var(--gold-lt);color:var(--ink);cursor:pointer;min-height:44px;font-weight:500}
+.faq{max-width:760px;margin:0 auto;padding:10px 16px 40px}
+.faq h2{margin:0 0 10px;font-family:var(--display);font-weight:600;font-size:30px}
+.faq details{border-bottom:1px solid var(--line);padding:12px 0}
+.faq summary{cursor:pointer;font-weight:500}
+.faq p{margin:8px 0 0;color:var(--muted)}
 </style>
 </head>
 <body>
 <header class="bar">
-  <a class="brand" href="index.html">Bib Number<small>NYOTNYOT.MARKET</small></a>
+  <a class="brand" href="index.html">NYOTNYOT MARKET<small>Bib Number</small></a>
   <button class="cartbtn" id="openCart" aria-label="Buka keranjang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg>Keranjang <b id="cnt">0</b></button>
 </header>
 
 <section class="hero">
-  <h1>Toko Bib Number</h1>
-  <p>Pilih produk, masukkan keranjang, lalu pesan lewat WhatsApp atau Shopee.</p>
+  <h1>NYOTNYOT MARKET</h1>
+  <p>Magnet bib, pin, nametag, dan pesanan custom. Pilih produk, isi keranjang, lalu pesan lewat WhatsApp atau Shopee.</p>
   <div class="how"><span>Pilih produk</span><span>Isi keranjang</span><span>Kirim pesanan</span></div>
+  <button class="cbtn" id="openCustom" type="button">Pesan custom</button>
 </section>
 
 <div class="tools">
@@ -116,9 +132,11 @@ footer a{color:var(--gold-lt)}
   <div class="empty" id="empty" hidden>Produk tidak ditemukan. Coba kata kunci atau kategori lain.</div>
 </main>
 
+<section class="faq" aria-labelledby="faqH"><h2 id="faqH">Pertanyaan umum</h2><div id="faqList"></div></section>
+
 <footer>
   <p style="margin:0 0 8px">Belanja juga di <a href="#" id="shopeeLink" target="_blank" rel="noopener noreferrer">Shopee</a>, <a href="https://www.instagram.com/bib.number/" target="_blank" rel="noopener noreferrer">Instagram</a>, <a href="https://www.threads.com/@bib.number" target="_blank" rel="noopener noreferrer">Threads</a></p>
-  <p style="margin:0">© <span id="yr"></span> Bib Number · NYOTNYOT.MARKET</p>
+  <p style="margin:0">© <span id="yr"></span> NYOTNYOT MARKET</p>
 </footer>
 
 <div id="layer"></div>
@@ -128,7 +146,23 @@ footer a{color:var(--gold-lt)}
 /* ===== PENGATURAN TOKO: ubah di sini ===== */
 const WA_NUMBER = "";   // contoh: "6281234567890" (kode negara tanpa +). Kosong = pesanan disalin ke clipboard.
 const SHOPEE_URL = "https://shopee.co.id/nyotnyotmarket";
-const WA_OPEN = "Halo Bib Number, saya mau pesan:";
+const WA_OPEN = "Halo NYOTNYOT MARKET, saya mau pesan:";
+/* Label produk: id → "Terlaris" atau "Baru". Stok habis: tulis id di SOLDOUT. */
+const BADGES = {"p52004606502":"Baru","p51913809709":"Baru","p51116564135":"Baru"};
+const SOLDOUT = [];
+/* Opsi di toko, per kategori (bisa ditimpa per produk dengan kolom opts). t:"select" wajib dipilih, t:"text" opsional. */
+const CAT_OPTS = {
+  "Magnet Bib Number":[{k:"Tulisan / nomor bib",t:"text",ph:"Opsional, mis. nama atau nomor lari"}],
+  "Pakaian Tes":[{k:"Ukuran",t:"select",o:["S","M","L","XL","XXL"]}],
+  "Pin & ID Card":[{k:"Tulisan / nama",t:"text",ph:"Opsional, untuk produk custom"}]
+};
+const CUSTOM_TYPES = ["Magnet Bib Custom (komunitas / event)","Custom Nametag / Papan Nama","Patch Topi Custom","Lainnya"];
+const FAQ = [
+  ["Berapa lama pengerjaannya?","Produk ready dikirim 1–2 hari kerja. Pesanan custom dikerjakan 3–7 hari kerja setelah desain disetujui."],
+  ["Bagaimana cara bayar?","Pesan lewat WhatsApp, lalu admin mengirim total dan detail pembayaran. Anda juga bisa checkout langsung di Shopee."],
+  ["Bagaimana kalau barang rusak atau salah?","Kirim foto atau video unboxing ke admin maksimal 2×24 jam setelah barang diterima, nanti kami bantu tukar. Pesanan custom tidak bisa dikembalikan kecuali cacat produksi."],
+  ["Bisa pesan custom untuk komunitas atau event?","Bisa. Tekan Pesan custom di atas, isi formulirnya, dan kirim desain atau referensi lewat WhatsApp."]
+];
 /* Daftar produk (diambil dari toko Shopee nyotnyotmarket).
    Kolom: id unik, name, price (angka rupiah), old (harga coret, opsional), cat, desc,
    img (URL gambar), tag (label, opsional), shopee (tautan produk di Shopee) */
@@ -179,102 +213,169 @@ const ls = { get(k){ try { return localStorage.getItem(k); } catch(e){ return nu
 $("yr").textContent = new Date().getFullYear();
 $("shopeeLink").href = SHOPEE_URL;
 
-let cart = {}; try { cart = JSON.parse(ls.get("bn-cart") || "{}") || {}; } catch(e){}
+let cart = {}; try { cart = JSON.parse(ls.get("bn-cart2") || "{}") || {}; } catch(e){}
+let wish = []; try { wish = JSON.parse(ls.get("bn-wish") || "[]") || []; } catch(e){}
 const byId = id => PRODUCTS.find(p => p.id === id);
-Object.keys(cart).forEach(id => { if (!byId(id)) delete cart[id]; });
-const save = () => ls.set("bn-cart", JSON.stringify(cart));
-const total = () => Object.entries(cart).reduce((s,[id,q]) => s + byId(id).price * q, 0);
-const qtyAll = () => Object.values(cart).reduce((s,q) => s + q, 0);
+const sold = p => SOLDOUT.includes(p.id);
+const optsOf = p => p.opts || CAT_OPTS[p.cat] || [];
+const tagOf = p => sold(p) ? "Stok habis" : (p.tag || BADGES[p.id] || "");
+Object.keys(cart).forEach(k => { const c = cart[k]; if (!c || !byId(c.id) || sold(byId(c.id))) delete cart[k]; });
+const save = () => ls.set("bn-cart2", JSON.stringify(cart));
+const saveWish = () => ls.set("bn-wish", JSON.stringify(wish));
+const total = () => Object.values(cart).reduce((s,c) => s + byId(c.id).price * c.q, 0);
+const qtyAll = () => Object.values(cart).reduce((s,c) => s + c.q, 0);
+const selText = sel => Object.entries(sel).filter(e => e[1]).map(e => e[0] + ": " + e[1]).join(", ");
 
 let toastT;
 function toast(t){ const el = $("toast"); el.textContent = t; el.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => el.hidden = true, 2200); }
+async function sendWA(text){
+  if (WA_NUMBER.trim()) { window.open("https://wa.me/" + WA_NUMBER.replace(/\D/g, "") + "?text=" + encodeURIComponent(text), "_blank", "noopener"); return; }
+  try { await navigator.clipboard.writeText(text); toast("Pesanan disalin. Tempel di chat penjual."); }
+  catch(e){ toast("Nomor WhatsApp belum diisi dan salin gagal."); }
+}
 
 /* ---- katalog ---- */
 let cat = "Semua";
-const cats = ["Semua", ...new Set(PRODUCTS.map(p => p.cat))];
+const cats = ["Semua", "Favorit", ...new Set(PRODUCTS.map(p => p.cat))];
 function drawChips(){
-  $("chips").replaceChildren(...cats.map(c => h("button", {class:"chip", type:"button", "aria-pressed": c === cat, onclick(){ cat = c; drawChips(); drawGrid(); }}, c)));
+  $("chips").replaceChildren(...cats.map(c => h("button", {class:"chip", type:"button", "aria-pressed": c === cat, onclick(){ cat = c; drawChips(); drawGrid(); }}, c === "Favorit" ? "♥ Favorit" : c)));
 }
 function thumb(p){ return p.img ? h("img", {src:p.img, alt:p.name, loading:"lazy", referrerpolicy:"no-referrer"}) : h("i", {"aria-hidden":"true"}, p.name.trim()[0] || "B"); }
+function heart(p){
+  const on = () => wish.includes(p.id);
+  const b = h("button", {class:"fav", type:"button", "aria-pressed":on(), "aria-label":"Favorit " + p.name, onclick(e){
+    e.stopPropagation(); wish = on() ? wish.filter(x => x !== p.id) : [...wish, p.id]; saveWish();
+    b.setAttribute("aria-pressed", on()); b.textContent = on() ? "♥" : "♡"; if (cat === "Favorit") drawGrid();
+  }}, on() ? "♥" : "♡");
+  return b;
+}
 function drawGrid(){
   const q = $("q").value.trim().toLowerCase(), s = $("sort").value;
-  let list = PRODUCTS.filter(p => (cat === "Semua" || p.cat === cat) && (p.name + " " + p.desc + " " + p.cat).toLowerCase().includes(q));
+  let list = PRODUCTS.filter(p => (cat === "Semua" || (cat === "Favorit" ? wish.includes(p.id) : p.cat === cat)) && (p.name + " " + p.desc + " " + p.cat).toLowerCase().includes(q));
   if (s === "low") list.sort((a,b) => a.price - b.price);
   if (s === "high") list.sort((a,b) => b.price - a.price);
   if (s === "az") list.sort((a,b) => a.name.localeCompare(b.name, "id"));
   $("count").textContent = list.length + " produk";
   $("empty").hidden = list.length > 0;
-  $("grid").replaceChildren(...list.map(p => h("article", {class:"card"},
-    h("button", {class:"pic", type:"button", "aria-label":"Lihat detail " + p.name, onclick(){ detail(p); }}, thumb(p), p.tag ? h("span", {class:"tag"}, p.tag) : ""),
+  $("grid").replaceChildren(...list.map(p => h("article", {class:"card" + (sold(p) ? " off" : "")},
+    h("button", {class:"pic", type:"button", "aria-label":"Lihat detail " + p.name, onclick(){ detail(p); }}, thumb(p), tagOf(p) ? h("span", {class:"tag" + (sold(p) ? " sold" : "")}, tagOf(p)) : ""),
+    heart(p),
     h("div", {class:"info"},
       h("span", {class:"cat"}, p.cat),
       h("h3", {class:"nm"}, p.name),
       h("div", {class:"pr"}, rp(p.price), p.old ? h("s", {}, rp(p.old)) : ""),
-      h("button", {class:"add", type:"button", onclick(){ add(p.id); }}, "Tambah ke keranjang")))));
+      sold(p) ? h("button", {class:"add", type:"button", disabled:""}, "Stok habis")
+        : h("button", {class:"add", type:"button", onclick(){ optsOf(p).length ? detail(p) : add(p.id); }}, optsOf(p).length ? "Pilih opsi" : "Tambah ke keranjang")))));
 }
 $("q").addEventListener("input", drawGrid);
 $("sort").addEventListener("change", drawGrid);
 
 /* ---- keranjang ---- */
-function add(id, n = 1){
-  cart[id] = Math.max(0, (cart[id] || 0) + n);
-  if (!cart[id]) delete cart[id];
+function add(id, sel = {}, n = 1){
+  const k = id + "|" + JSON.stringify(sel);
+  const c = cart[k] || (cart[k] = {id, sel, q:0});
+  c.q += n; if (c.q <= 0) delete cart[k];
   save(); badge();
   if (n > 0) toast(byId(id).name + " masuk keranjang");
   if ($("cartSheet")) drawCart();
 }
 function badge(){ $("cnt").textContent = qtyAll(); }
-
 function orderText(note){
-  const lines = Object.entries(cart).map(([id,q]) => "- " + byId(id).name + " x" + q + " = " + rp(byId(id).price * q));
+  const lines = Object.values(cart).map(c => { const p = byId(c.id), t = selText(c.sel); return "- " + p.name + (t ? " (" + t + ")" : "") + " x" + c.q + " = " + rp(p.price * c.q); });
   return WA_OPEN + "\n" + lines.join("\n") + "\nTotal: " + rp(total()) + (note ? "\nCatatan: " + note : "");
 }
-function closeLayer(){ $("layer").replaceChildren(); document.body.style.overflow = ""; }
+function closeLayer(){ $("layer").replaceChildren(); document.body.style.overflow = ""; if (/^#p\d+/.test(location.hash)) history.replaceState(null, "", location.pathname + location.search); }
 function openLayer(...nodes){ $("layer").replaceChildren(h("div", {class:"scrim", onclick:closeLayer}), ...nodes); document.body.style.overflow = "hidden"; }
 
 function drawCart(){
-  const box = $("cartSheet"), ids = Object.keys(cart);
+  const box = $("cartSheet"), keys = Object.keys(cart);
   const note = box.querySelector(".note") ? box.querySelector(".note").value : "";
   box.replaceChildren(
     h("div", {class:"sh-h"}, h("h2", {}, "Keranjang"), h("button", {class:"x", type:"button", "aria-label":"Tutup", onclick:closeLayer}, "×")),
-    h("div", {class:"items"}, ids.length ? ids.map(id => { const p = byId(id);
+    h("div", {class:"items"}, keys.length ? keys.map(k => { const c = cart[k], p = byId(c.id), t = selText(c.sel);
       return h("div", {class:"it"},
-        h("div", {class:"t"}, h("b", {}, p.name), h("span", {}, rp(p.price))),
+        h("div", {class:"t"}, h("b", {}, p.name), t ? h("span", {}, t + " · ") : "", h("span", {}, rp(p.price))),
         h("div", {class:"qty"},
-          h("button", {type:"button", "aria-label":"Kurangi " + p.name, onclick(){ add(id, -1); }}, "−"),
-          h("span", {"aria-live":"polite"}, cart[id]),
-          h("button", {type:"button", "aria-label":"Tambah " + p.name, onclick(){ add(id, 1); }}, "+")));
+          h("button", {type:"button", "aria-label":"Kurangi " + p.name, onclick(){ add(c.id, c.sel, -1); }}, "−"),
+          h("span", {"aria-live":"polite"}, c.q),
+          h("button", {type:"button", "aria-label":"Tambah " + p.name, onclick(){ add(c.id, c.sel, 1); }}, "+")));
     }) : h("p", {class:"empty"}, "Keranjang masih kosong.")),
-    ids.length ? h("div", {class:"foot"},
+    keys.length ? h("div", {class:"foot"},
       h("div", {class:"tot"}, h("span", {}, "Total"), h("span", {}, rp(total()))),
-      h("input", {class:"note", placeholder:"Catatan (ukuran, warna, alamat)", value:note}),
-      h("button", {class:"btn p", type:"button", onclick(){ checkout(box.querySelector(".note").value.trim()); }}, "Pesan via WhatsApp"),
+      h("input", {class:"note", placeholder:"Catatan (alamat, dll.)", value:note}),
+      h("button", {class:"btn p", type:"button", onclick(){ sendWA(orderText(box.querySelector(".note").value.trim())); }}, "Pesan via WhatsApp"),
       h("a", {class:"btn", href:SHOPEE_URL, target:"_blank", rel:"noopener noreferrer"}, "Lanjut di Shopee"),
       h("button", {class:"btn", type:"button", onclick(){ cart = {}; save(); badge(); drawCart(); }}, "Kosongkan keranjang")) : "");
 }
-async function checkout(note){
-  const text = orderText(note);
-  if (WA_NUMBER.trim()) { window.open("https://wa.me/" + WA_NUMBER.replace(/\D/g, "") + "?text=" + encodeURIComponent(text), "_blank", "noopener"); return; }
-  try { await navigator.clipboard.writeText(text); toast("Pesanan disalin. Tempel di chat penjual."); }
-  catch(e){ toast("Nomor WhatsApp belum diisi dan salin gagal."); }
-}
 $("openCart").addEventListener("click", () => { openLayer(h("aside", {class:"sheet cartsheet", id:"cartSheet", role:"dialog", "aria-modal":"true", "aria-label":"Keranjang"})); drawCart(); });
 
-/* ---- detail produk ---- */
+/* ---- detail produk (tautan: toko.html#id-produk) ---- */
+async function share(p){
+  const url = location.href.split("#")[0] + "#" + p.id;
+  try { if (navigator.share) { await navigator.share({title:p.name + " · NYOTNYOT MARKET", url}); return; } } catch(e){ if (e.name === "AbortError") return; }
+  try { await navigator.clipboard.writeText(url); toast("Tautan produk disalin."); } catch(e){ toast(url); }
+}
 function detail(p){
+  history.replaceState(null, "", "#" + p.id);
+  const sel = {};
+  const fields = optsOf(p).map(o => {
+    const el = o.t === "select"
+      ? h("select", {"aria-label":o.k}, h("option", {value:""}, "Pilih " + o.k.toLowerCase()), ...o.o.map(v => h("option", {value:v}, v)))
+      : h("input", {placeholder:o.ph || o.k, "aria-label":o.k, maxlength:"60"});
+    ["input","change"].forEach(ev => el.addEventListener(ev, () => { sel[o.k] = el.value.trim(); }));
+    return h("label", {class:"fld"}, h("span", {}, o.k), el);
+  });
   openLayer(h("section", {class:"sheet dtl", role:"dialog", "aria-modal":"true", "aria-label":p.name},
-    h("div", {class:"pic"}, thumb(p), h("button", {class:"x", type:"button", "aria-label":"Tutup", style:"position:absolute;right:6px;top:6px;background:var(--ivory)", onclick:closeLayer}, "×")),
+    h("div", {class:"pic"}, thumb(p), tagOf(p) ? h("span", {class:"tag" + (sold(p) ? " sold" : "")}, tagOf(p)) : "", h("button", {class:"x", type:"button", "aria-label":"Tutup", style:"position:absolute;right:6px;top:6px;background:var(--ivory)", onclick:closeLayer}, "×")),
     h("div", {class:"body"},
       h("span", {class:"cat"}, p.cat),
       h("h2", {}, p.name),
       h("div", {class:"pr"}, rp(p.price), p.old ? h("s", {}, rp(p.old)) : ""),
       h("p", {}, p.desc),
-      h("button", {class:"btn p", type:"button", onclick(){ add(p.id); closeLayer(); }}, "Tambah ke keranjang"),
-      h("a", {class:"btn", href:p.shopee || SHOPEE_URL, target:"_blank", rel:"noopener noreferrer"}, "Beli di Shopee"))));
+      ...fields,
+      sold(p) ? h("button", {class:"btn", type:"button", disabled:""}, "Stok habis")
+        : h("button", {class:"btn p", type:"button", onclick(){
+            const miss = optsOf(p).find(o => o.t === "select" && !sel[o.k]);
+            if (miss) { toast("Pilih " + miss.k.toLowerCase() + " dulu."); return; }
+            add(p.id, {...sel}); closeLayer(); }}, "Tambah ke keranjang"),
+      h("a", {class:"btn", href:p.shopee || SHOPEE_URL, target:"_blank", rel:"noopener noreferrer"}, "Beli di Shopee"),
+      h("button", {class:"btn", type:"button", onclick(){ share(p); }}, "Bagikan produk"),
+      h("button", {class:"btn", type:"button", onclick(){ wish = wish.includes(p.id) ? wish.filter(x => x !== p.id) : [...wish, p.id]; saveWish(); toast(wish.includes(p.id) ? "Masuk favorit." : "Dihapus dari favorit."); drawGrid(); }}, "♥ Favorit"))));
 }
-addEventListener("keydown", e => { if (e.key === "Escape") closeLayer(); });
+function route(){ const p = byId(location.hash.slice(1)); if (p) detail(p); else if ($("layer").querySelector(".dtl")) closeLayer(); }
 
-drawChips(); drawGrid(); badge();
+/* ---- pesanan custom ---- */
+function customForm(){
+  const f = {};
+  const mk = (k, el) => { f[k] = el; return h("label", {class:"fld"}, h("span", {}, k), el); };
+  const inp = (ph, type) => h("input", {placeholder:ph, type:type || "text", maxlength:"120"});
+  const box = h("aside", {class:"sheet cartsheet", role:"dialog", "aria-modal":"true", "aria-label":"Pesanan custom"},
+    h("div", {class:"sh-h"}, h("h2", {}, "Pesanan custom"), h("button", {class:"x", type:"button", "aria-label":"Tutup", onclick:closeLayer}, "×")),
+    h("div", {class:"items"},
+      h("p", {class:"hint"}, "Isi formulir, lalu kirim lewat WhatsApp. File desain bisa dikirim di chat setelahnya."),
+      mk("Jenis produk", h("select", {}, ...CUSTOM_TYPES.map(t => h("option", {value:t}, t)))),
+      mk("Nama komunitas / event", inp("Mis. Komunitas Lari Jakarta")),
+      mk("Tulisan / nomor bib", inp("Nama atau nomor yang dicetak")),
+      mk("Warna", inp("Mis. hitam, oranye")),
+      mk("Jumlah", Object.assign(inp("", "number"), {min:"1", value:"1"})),
+      mk("Link desain / referensi", inp("https://...", "url")),
+      mk("Catatan", h("textarea", {rows:"3", maxlength:"300"}))),
+    h("div", {class:"foot"}, h("button", {class:"btn p", type:"button", onclick(){
+      const v = k => f[k].value.trim();
+      if (!v("Nama komunitas / event") || !(+v("Jumlah") > 0)) { toast("Isi nama komunitas/event dan jumlah."); return; }
+      const rows = Object.keys(f).filter(k => v(k)).map(k => k + ": " + v(k));
+      sendWA(WA_OPEN.replace("pesan:", "pesan CUSTOM:") + "\n" + rows.join("\n"));
+    }}, "Kirim via WhatsApp")));
+  openLayer(box);
+}
+$("openCustom").addEventListener("click", customForm);
+
+/* ---- FAQ ---- */
+$("faqList").replaceChildren(...FAQ.map(x => h("details", {}, h("summary", {}, x[0]), h("p", {}, x[1]))));
+
+addEventListener("keydown", e => { if (e.key === "Escape") closeLayer(); });
+addEventListener("hashchange", route);
+drawChips(); drawGrid(); badge(); route();
 </script>
 </body>
 </html>
