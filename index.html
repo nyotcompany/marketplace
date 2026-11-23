@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bib Number · NYOTNYOT.MARKET — Tautan Resmi</title>
 <meta name="description" content="Belanja di Shopee, tonton di TikTok, dan ikuti Bib Number di Instagram dan Threads.">
 <meta name="theme-color" content="#0e2620">
@@ -24,9 +24,14 @@
 <style>
 :root{
   --bg:#0e2620; --bg2:#16362d; --ivory:#f4f2ec; --ivory2:#ebe8df;
-  --ink:#12201b; --muted:#5b6660; --gold:#a8844a; --gold-lt:#d9bf8a; --line:#cfc8b6;
+  --ink:#12201b; --muted:#5b6660; --gold:#a8844a; --gold-lt:#d9bf8a; --line:#cfc8b6; --tone:#8a6a33;
+  --runner:#0e2620; --runner-far:#3a5c50; --chip:rgba(168,132,74,.14);
   --display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
   --body:Jost,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+:root[data-theme="dark"]{
+  --ivory:#16362d; --ivory2:#0e2620; --ink:#f4f2ec; --muted:#a9b6af; --line:#2f5547; --tone:#d9bf8a;
+  --runner:#d9bf8a; --runner-far:#7d6a47; --chip:rgba(217,191,138,.12);
 }
 *{box-sizing:border-box}
 body{
@@ -38,29 +43,34 @@ body{
   position:relative;width:min(100%,440px);background:var(--ivory);border-radius:4px;overflow:hidden;
   box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 0 1px rgba(217,191,138,.35);
 }
-.bib::before{ /* bingkai emas tipis */
-  content:"";position:absolute;inset:8px;border:1px solid var(--gold);opacity:.55;border-radius:2px;pointer-events:none;
-}
+.bib::before{content:"";position:absolute;inset:8px;border:1px solid var(--gold);opacity:.55;border-radius:2px;pointer-events:none}
 .pin{position:absolute;top:18px;width:12px;height:12px;border-radius:50%;background:var(--bg);box-shadow:0 0 0 2px var(--gold)}
 .pin.l{left:20px}.pin.r{right:20px}
+.tools{position:absolute;top:11px;right:40px;display:flex;gap:6px;z-index:2}
+.tool{width:26px;height:26px;padding:0;border-radius:50%;border:1px solid var(--gold);background:transparent;color:var(--tone);cursor:pointer;display:grid;place-items:center}
+.tool svg{width:14px;height:14px}
+.tool:hover{background:var(--gold-lt);color:#12201b}
+.tool:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .top{padding:50px 28px 14px;text-align:center}
-.tagline{margin:0 0 8px;font-size:14px;letter-spacing:.08em;color:#8a6a33}
+.tagline{margin:0 0 8px;font-size:14px;letter-spacing:.08em;color:var(--tone)}
 h1{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(58px,18vw,84px);line-height:.92;letter-spacing:-.01em}
 h1 em{display:block;font-weight:500}
 .store{display:flex;align-items:center;gap:12px;margin:14px 0 0}
 .store::before,.store::after{content:"";flex:1;border-top:1px solid var(--gold);opacity:.6}
-.store span{font-family:var(--display);font-weight:600;font-size:clamp(16px,5vw,22px);letter-spacing:.1em;color:#8a6a33;white-space:nowrap}
+.store span{font-family:var(--display);font-weight:600;font-size:clamp(16px,5vw,22px);letter-spacing:.1em;color:var(--tone);white-space:nowrap}
 .sub{margin:16px auto 0;max-width:30ch;font-size:15px;line-height:1.6;color:var(--muted)}
+.hours{display:inline-flex;align-items:center;gap:8px;margin:14px 0 0;padding:5px 14px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--muted)}
+.hours i{width:8px;height:8px;border-radius:50%;background:#9a9a8f}
+.hours.open i{background:#3f9a63}
 
-/* lintasan lari */
-.track{position:relative;height:86px;margin:12px 28px 4px;overflow:hidden}
+.track{position:relative;height:86px;margin:12px 28px 4px;overflow:hidden;cursor:pointer}
 .track::before,.track::after{content:"";position:absolute;left:0;right:0;height:0;border-top:1px dashed var(--gold)}
 .track::before{top:6px}.track::after{bottom:6px}
 .runner{position:absolute;bottom:9px;left:0;width:52px;height:71px;animation:cross 7s linear infinite}
 .runner svg{width:100%;height:100%;overflow:visible}
-.seg{fill:none;stroke:var(--bg);stroke-linecap:round}
-.far .seg{stroke:#3a5c50}
-.ink{fill:var(--bg)}
+.seg{fill:none;stroke:var(--runner);stroke-linecap:round}
+.far .seg{stroke:var(--runner-far)}
+.ink{fill:var(--runner)}
 .shoe{fill:var(--gold)}
 .torso{transform-origin:40px 55px;transform:rotate(12deg)}
 .bob{animation:bob .2s ease-in-out infinite alternate}
@@ -70,6 +80,9 @@ h1 em{display:block;font-weight:500}
 .ua{transform-origin:40px 26px;animation-name:uarm}
 .fa{transform-origin:40px 42px;animation-name:farm}
 .half{animation-delay:-.4s}
+.sprint .runner{animation-duration:2.2s}
+.sprint .th,.sprint .sh,.sprint .ua,.sprint .fa{animation-duration:.4s}
+.paused .runner,.paused .th,.paused .sh,.paused .ua,.paused .fa,.paused .bob{animation-play-state:paused}
 @keyframes thigh{0%{transform:rotate(-42deg)}25%{transform:rotate(-2deg)}50%{transform:rotate(30deg)}75%{transform:rotate(-12deg)}100%{transform:rotate(-42deg)}}
 @keyframes shin{0%{transform:rotate(8deg)}25%{transform:rotate(22deg)}50%{transform:rotate(35deg)}75%{transform:rotate(105deg)}100%{transform:rotate(8deg)}}
 @keyframes uarm{0%{transform:rotate(-48deg)}50%{transform:rotate(42deg)}100%{transform:rotate(-48deg)}}
@@ -78,29 +91,68 @@ h1 em{display:block;font-weight:500}
 @keyframes bob{from{transform:translateY(0)}to{transform:translateY(-2.5px)}}
 
 [hidden]{display:none!important}
-.promo{margin:10px 20px 6px;padding:11px 18px;text-align:center;font-size:14px;line-height:1.5;color:#5d4821;background:rgba(168,132,74,.14);border:1px solid rgba(168,132,74,.45);border-radius:14px}
-.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:22px 28px 4px}
-.btn{font:500 14px var(--body);padding:11px 20px;border-radius:999px;cursor:pointer;border:1px solid var(--gold);background:transparent;color:var(--ink);text-decoration:none;transition:background .2s,color .2s}
-.btn.primary{background:var(--bg);color:var(--gold-lt);border-color:var(--bg)}
-.btn:hover{background:var(--gold-lt);border-color:var(--gold-lt);color:var(--ink)}
-.btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-.status{min-height:18px;margin:8px 0 0;text-align:center;font-size:13px;color:var(--muted)}
+.promo{margin:10px 20px 6px;padding:11px 18px;text-align:center;font-size:14px;line-height:1.5;color:var(--ink);background:var(--chip);border:1px solid rgba(168,132,74,.45);border-radius:14px}
+.promo b{font-weight:500;color:var(--tone)}
+
+.sec{margin:18px 28px 0}
+.sec h2{margin:0 0 10px;font-family:var(--display);font-weight:600;font-size:24px}
+.prods{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory}
+.prod{flex:none;width:150px;scroll-snap-align:start;padding:12px 14px;border:1px solid var(--line);border-radius:10px;color:inherit;text-decoration:none}
+.prod:hover,.prod:focus-visible{border-color:var(--gold);outline:none}
+.prod b{display:block;font-weight:500;font-size:15px;line-height:1.3}
+.prod span{display:block;margin-top:4px;font-size:13px;color:var(--muted)}
+.prod .pr{color:var(--tone);font-weight:500}
+
 .links{list-style:none;margin:6px 0 0;padding:0 8px}
-.links li{border-top:1px solid var(--line)}
-.links a{display:flex;align-items:center;gap:16px;padding:16px 20px;min-height:76px;color:inherit;text-decoration:none;
-  background:linear-gradient(90deg,rgba(168,132,74,.14),rgba(168,132,74,.14)) no-repeat left/0 100%;transition:background-size .35s ease}
-.links a:hover,.links a:focus-visible{background-size:100% 100%;outline:none}
-.links a:focus-visible{box-shadow:inset 0 0 0 2px var(--gold)}
+.links li{display:flex;align-items:center;border-top:1px solid var(--line)}
+.links a.lk{flex:1;min-width:0;display:flex;align-items:center;gap:16px;padding:16px 8px 16px 20px;min-height:76px;color:inherit;text-decoration:none;
+  background:linear-gradient(90deg,var(--chip),var(--chip)) no-repeat left/0 100%;transition:background-size .35s ease}
+.links a.lk:hover,.links a.lk:focus-visible{background-size:100% 100%;outline:none}
+.links a.lk:focus-visible{box-shadow:inset 0 0 0 2px var(--gold)}
 .ico{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--bg);color:var(--gold-lt)}
 .ico svg{width:20px;height:20px}
 .txt{flex:1;min-width:0}
 .name{display:block;font-family:var(--display);font-weight:600;font-size:27px;line-height:1.05}
 .desc{display:block;margin-top:3px;font-size:14px;color:var(--muted)}
 .go{color:var(--gold);font-size:20px;transition:transform .25s}
-.links a:hover .go{transform:translate(3px,-3px)}
+.links a.lk:hover .go{transform:translate(3px,-3px)}
+.cp{flex:none;width:36px;height:36px;margin-right:6px;padding:0;border:0;border-radius:50%;background:transparent;color:var(--muted);cursor:pointer;display:grid;place-items:center}
+.cp svg{width:17px;height:17px}
+.cp:hover{background:var(--chip);color:var(--ink)}
+.cp:focus-visible{outline:2px solid var(--gold)}
 
+.faq details{border-top:1px solid var(--line);padding:12px 0}
+.faq summary{cursor:pointer;font-weight:500;font-size:15px}
+.faq summary:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.faq p{margin:8px 0 0;font-size:14px;line-height:1.6;color:var(--muted)}
+
+.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:22px 28px 4px}
+.btn{font:500 14px var(--body);padding:11px 20px;border-radius:999px;cursor:pointer;border:1px solid var(--gold);background:transparent;color:var(--ink);text-decoration:none;transition:background .2s,color .2s}
+.btn.primary{background:var(--bg);color:var(--gold-lt);border-color:var(--bg)}
+.btn:hover{background:var(--gold-lt);border-color:var(--gold-lt);color:#12201b}
+.btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.status{min-height:18px;margin:8px 0 0;text-align:center;font-size:13px;color:var(--muted)}
 .foot{margin-top:6px;border-top:1px solid var(--line);padding:16px 28px 22px;text-align:center;font-size:13px;color:var(--muted);background:var(--ivory2)}
 
+/* ===== MODE MOBILE ===== */
+a,button,.track{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+@media(max-width:520px){
+  body{padding:0;display:block;background:var(--bg)}
+  .bib{width:100%;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;border-radius:0;box-shadow:none;overflow:visible;padding-top:env(safe-area-inset-top,0px)}
+  .bib::before{inset:calc(env(safe-area-inset-top,0px) + 8px) 8px 8px}
+  .pin{top:calc(env(safe-area-inset-top,0px) + 18px)}
+  .tools{top:calc(env(safe-area-inset-top,0px) + 8px);right:38px;gap:4px}
+  .tool{width:40px;height:40px}.tool svg{width:18px;height:18px}
+  .top{padding-top:56px}
+  .links a.lk{min-height:84px;padding-left:16px}
+  .cp{width:44px;height:44px}.cp svg{width:19px;height:19px}
+  .links a.lk:active{background-size:100% 100%}
+  .actions{position:sticky;bottom:0;z-index:3;margin-top:auto;gap:8px;padding:12px 16px max(12px,env(safe-area-inset-bottom));background:var(--ivory);border-top:1px solid var(--line)}
+  .btn{flex:1 1 40%;padding:14px 16px;font-size:15px;text-align:center}
+  .status{position:fixed;left:16px;right:16px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:5;min-height:0;margin:0;padding:10px 14px;border-radius:12px;background:var(--bg);color:var(--gold-lt);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+  .status:empty{display:none}
+  .foot{margin-top:0}
+}
 @media(prefers-reduced-motion:no-preference){
   .bib{animation:in .7s ease-out both}
   @keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
@@ -112,16 +164,21 @@ h1 em{display:block;font-weight:500}
 </style>
 </head>
 <body>
-<main class="bib">
+<main class="bib" id="bib">
   <span class="pin l" aria-hidden="true"></span><span class="pin r" aria-hidden="true"></span>
+  <div class="tools">
+    <button type="button" class="tool" id="motion" aria-label="Jeda animasi" aria-pressed="false" title="Jeda animasi"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>
+    <button type="button" class="tool" id="theme" aria-label="Ganti tema" title="Ganti tema"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z"/></svg></button>
+  </div>
   <header class="top">
-    <p class="tagline">Tautan resmi</p>
+    <p class="tagline" id="greet">Tautan resmi</p>
     <h1>Bib <em>Number</em></h1>
     <p class="store"><span>NYOTNYOT.MARKET</span></p>
     <p class="sub">Belanja produk kami, tonton videonya, dan ikuti kabar terbarunya.</p>
+    <p class="hours" id="hours" hidden><i></i><span></span></p>
   </header>
 
-  <div class="track" aria-hidden="true">
+  <div class="track" id="track" title="Ketuk untuk membuat pelari ngebut" aria-hidden="true">
     <div class="runner">
       <svg viewBox="0 0 80 110">
         <ellipse cx="42" cy="106" rx="17" ry="2.4" fill="rgba(14,38,32,.16)"/>
@@ -145,24 +202,28 @@ h1 em{display:block;font-weight:500}
 
   <p class="promo" id="promo" hidden></p>
 
-  <ul class="links">
-    <li><a href="https://s.shopee.co.id/7fbc0jbkAs" target="_blank" rel="noopener noreferrer">
+  <section class="sec" id="prodSec" hidden><h2>Produk unggulan</h2><div class="prods" id="prods"></div></section>
+
+  <ul class="links" id="links">
+    <li><a class="lk" data-id="shopee" href="https://s.shopee.co.id/7fbc0jbkAs" target="_blank" rel="noopener noreferrer">
       <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg></span>
       <span class="txt"><span class="name">Shopee</span><span class="desc">Belanja produk Bib Number</span></span>
       <span class="go" aria-hidden="true">↗</span></a></li>
-    <li><a href="https://vt.tiktok.com/ZS9PyUQ3nk3K3-FrKZF/" target="_blank" rel="noopener noreferrer">
+    <li><a class="lk" data-id="tiktok" href="https://vt.tiktok.com/ZS9PyUQ3nk3K3-FrKZF/" target="_blank" rel="noopener noreferrer">
       <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.2a4.2 4.2 0 1 1-4-4.2"/><path d="M14 4c.7 2.8 2.5 4.4 5 4.8"/></svg></span>
       <span class="txt"><span class="name">TikTok</span><span class="desc">Tonton video terbaru</span></span>
       <span class="go" aria-hidden="true">↗</span></a></li>
-    <li><a href="https://www.instagram.com/bib.number/" target="_blank" rel="noopener noreferrer">
+    <li><a class="lk" data-id="instagram" href="https://www.instagram.com/bib.number/" target="_blank" rel="noopener noreferrer">
       <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></span>
       <span class="txt"><span class="name">Instagram</span><span class="desc">Lihat foto dan produk kami</span></span>
       <span class="go" aria-hidden="true">↗</span></a></li>
-    <li><a href="https://www.threads.com/@bib.number" target="_blank" rel="noopener noreferrer">
+    <li><a class="lk" data-id="threads" href="https://www.threads.com/@bib.number" target="_blank" rel="noopener noreferrer">
       <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19.2 8.7c-.7-3.3-3.1-5.2-6.7-5.2-4.4 0-7.2 3.1-7.2 8.2 0 5.3 2.8 8.8 7.3 8.8 3.7 0 6.1-2.1 6.1-5.1 0-2.5-1.7-4-4.6-4-2.3 0-3.8 1.1-3.8 2.8 0 1.4 1 2.3 2.5 2.3 1.7 0 2.8-1.1 2.8-3.1 0-4-1.8-6.3-5.1-6.3"/></svg></span>
       <span class="txt"><span class="name">Threads</span><span class="desc">Ikuti percakapan dan kabar terbaru</span></span>
       <span class="go" aria-hidden="true">↗</span></a></li>
   </ul>
+
+  <section class="sec faq" id="faqSec" hidden><h2>Pertanyaan umum</h2><div id="faq"></div></section>
 
   <div class="actions">
     <a class="btn primary" id="wa" target="_blank" rel="noopener noreferrer" hidden>Tanya admin di WhatsApp</a>
@@ -173,50 +234,158 @@ h1 em{display:block;font-weight:500}
 
   <footer class="foot">© <span id="year"></span> Bib Number · NYOTNYOT.MARKET</footer>
 </main>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Bib Number · NYOTNYOT.MARKET","url":"https://proletartech.github.io/NYOTNYOT.MARKET/","sameAs":["https://www.instagram.com/bib.number/","https://www.threads.com/@bib.number"]}
+</script>
 <script>
   /* ===== PENGATURAN: ubah di sini ===== */
   const PAGE_URL   = "https://proletartech.github.io/NYOTNYOT.MARKET/";
   const PROMO      = "";  // contoh: "Diskon 10% untuk pembelian pertama" — kosong = banner disembunyikan
+  const PROMO_END  = "";  // contoh: "2026-12-31T23:59:00+07:00" — hitung mundur di banner; kosong = tanpa hitung mundur
   const WA_NUMBER  = "";  // contoh: "6281234567890" (kode negara tanpa +, tanpa 0 di depan). Kosong = tombol disembunyikan.
   const WA_TEXT    = "Halo Bib Number, saya mau tanya produknya.";
+  const HOURS      = null; // contoh: {open:9, close:21} (jam WIB). null = status buka/tutup disembunyikan
+  const PRODUCTS   = [];  // contoh: [{name:"Kaos Lari", price:"Rp129.000", url:"https://..."}]
+  const FAQ        = [];  // contoh: [["Kirim dari mana?","Dari Jakarta."]]
   const GOATCOUNTER = ""; // contoh: "namakamu" (dari namakamu.goatcounter.com). Kosong = tidak ada penghitung.
   /* =================================== */
 
-  document.getElementById("year").textContent = new Date().getFullYear();
-  const statusEl = document.getElementById("status");
+  const $ = id => document.getElementById(id);
+  const root = document.documentElement, bib = $("bib"), statusEl = $("status");
+  const store = {
+    get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
+    set(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+  };
+  let tmr;
+  const say = t => { statusEl.textContent = t; clearTimeout(tmr); tmr = setTimeout(() => statusEl.textContent = "", 3500); };
+  const wib = () => new Date(new Date().toLocaleString("en-US",{timeZone:"Asia/Jakarta"}));
+  const count = (id, title) => { try { window.goatcounter && window.goatcounter.count({path:id, title, event:true}); } catch(e){} };
 
-  const promo = document.getElementById("promo");
-  if (PROMO.trim()) { promo.textContent = PROMO; promo.hidden = false; }
+  $("year").textContent = new Date().getFullYear();
 
-  const wa = document.getElementById("wa");
+  /* sapaan sesuai jam WIB */
+  const h = wib().getHours();
+  $("greet").textContent = (h < 11 ? "Selamat pagi" : h < 15 ? "Selamat siang" : h < 18 ? "Selamat sore" : "Selamat malam") + ", tautan resmi kami";
+
+  /* tema terang / gelap */
+  const setTheme = t => { root.dataset.theme = t; store.set("bn-theme", t); };
+  setTheme(store.get("bn-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+  $("theme").addEventListener("click", () => setTheme(root.dataset.theme === "dark" ? "light" : "dark"));
+
+  /* jeda animasi */
+  const motionBtn = $("motion");
+  const setPaused = p => {
+    bib.classList.toggle("paused", p);
+    motionBtn.setAttribute("aria-pressed", p);
+    const l = p ? "Putar animasi" : "Jeda animasi";
+    motionBtn.setAttribute("aria-label", l); motionBtn.title = l;
+    store.set("bn-paused", p ? "1" : "0");
+  };
+  setPaused(store.get("bn-paused") === "1");
+  motionBtn.addEventListener("click", () => setPaused(!bib.classList.contains("paused")));
+
+  /* ketuk lintasan = pelari ngebut */
+  let sprintT;
+  $("track").addEventListener("click", () => {
+    bib.classList.add("sprint"); clearTimeout(sprintT);
+    sprintT = setTimeout(() => bib.classList.remove("sprint"), 3000);
+  });
+
+  /* banner promo + hitung mundur */
+  const promo = $("promo");
+  if (PROMO.trim()) {
+    const end = PROMO_END ? Date.parse(PROMO_END) : NaN;
+    const draw = () => {
+      let t = PROMO;
+      if (!isNaN(end)) {
+        const ms = end - Date.now();
+        if (ms <= 0) { promo.hidden = true; return false; }
+        const d = Math.floor(ms/864e5), j = Math.floor(ms%864e5/36e5), m = Math.floor(ms%36e5/6e4);
+        promo.replaceChildren(PROMO + " ", Object.assign(document.createElement("b"), {textContent:"Berakhir dalam " + (d ? d + " hari " : "") + j + " jam " + m + " menit"}));
+      } else promo.textContent = t;
+      promo.hidden = false; return true;
+    };
+    if (draw() && !isNaN(end)) setInterval(draw, 30000);
+  }
+
+  /* status buka / tutup */
+  if (HOURS) {
+    const now = wib(), hr = now.getHours() + now.getMinutes()/60;
+    const open = hr >= HOURS.open && hr < HOURS.close;
+    const el = $("hours"); el.hidden = false; el.classList.toggle("open", open);
+    const f = n => String(n).padStart(2,"0") + ".00";
+    el.lastElementChild.textContent = open ? "Admin online, balas sampai " + f(HOURS.close) + " WIB" : "Admin offline, buka lagi " + f(HOURS.open) + " WIB";
+  }
+
+  /* produk unggulan */
+  if (PRODUCTS.length) {
+    $("prodSec").hidden = false;
+    PRODUCTS.forEach(p => {
+      const a = document.createElement("a");
+      a.className = "prod"; a.href = p.url; a.target = "_blank"; a.rel = "noopener noreferrer";
+      const n = document.createElement("b"); n.textContent = p.name; a.append(n);
+      if (p.price) { const s = document.createElement("span"); s.className = "pr"; s.textContent = p.price; a.append(s); }
+      if (p.note) { const s = document.createElement("span"); s.textContent = p.note; a.append(s); }
+      a.addEventListener("click", () => count("produk-" + p.name, p.name));
+      $("prods").append(a);
+    });
+  }
+
+  /* tanya jawab */
+  if (FAQ.length) {
+    $("faqSec").hidden = false;
+    FAQ.forEach(([q,a]) => {
+      const d = document.createElement("details"), s = document.createElement("summary"), p = document.createElement("p");
+      s.textContent = q; p.textContent = a; d.append(s, p); $("faq").append(d);
+    });
+  }
+
+  /* tombol salin per tautan, pelacak klik, pintasan keyboard 1-4 */
+  const copySvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>';
+  const copyText = async t => {
+    try { await navigator.clipboard.writeText(t); return true; } catch(e){ return false; }
+  };
+  const anchors = [...document.querySelectorAll("a.lk")];
+  anchors.forEach(a => {
+    const name = a.querySelector(".name").textContent;
+    a.addEventListener("click", () => count("klik-" + a.dataset.id, name));
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "cp"; b.innerHTML = copySvg;
+    b.setAttribute("aria-label", "Salin tautan " + name); b.title = "Salin tautan " + name;
+    b.addEventListener("click", async () => say(await copyText(a.href) ? "Tautan " + name + " disalin." : "Tidak bisa menyalin: " + a.href));
+    a.parentElement.append(b);
+  });
+  addEventListener("keydown", e => {
+    if (e.ctrlKey || e.metaKey || e.altKey || /input|textarea|select/i.test(e.target.tagName)) return;
+    const a = anchors[+e.key - 1]; if (a) a.click();
+  });
+
+  /* getar singkat saat ketuk (jika didukung) */
+  document.addEventListener("click", e => { if (e.target.closest("a,button") && navigator.vibrate) navigator.vibrate(8); });
+
+  /* WhatsApp */
+  const wa = $("wa");
   if (WA_NUMBER.trim()) {
     wa.href = "https://wa.me/" + WA_NUMBER.replace(/\D/g, "") + "?text=" + encodeURIComponent(WA_TEXT);
     wa.hidden = false;
+    wa.addEventListener("click", () => count("klik-whatsapp", "WhatsApp"));
   }
 
-  const shareBtn = document.getElementById("share");
-  if (navigator.share) shareBtn.hidden = false; // menu bagikan hanya ada di ponsel/browser yang mendukung
-
+  /* bagikan & salin halaman */
+  const shareBtn = $("share");
+  if (navigator.share) shareBtn.hidden = false;
   shareBtn.addEventListener("click", async () => {
-    // Salin otomatis: tautan langsung masuk clipboard saat tombol diketuk, lalu menu bagikan dibuka.
-    const copied = navigator.clipboard ? navigator.clipboard.writeText(PAGE_URL).then(() => true, () => false) : Promise.resolve(false);
+    const copied = copyText(PAGE_URL);
     try {
       await navigator.share({title: "Bib Number · NYOTNYOT.MARKET", text: "Tautan resmi Bib Number", url: PAGE_URL});
-      if (await copied) statusEl.textContent = "Tautan juga sudah disalin.";
+      if (await copied) say("Tautan juga sudah disalin.");
     } catch (e) {
-      if (e && e.name === "AbortError") { if (await copied) statusEl.textContent = "Tautan sudah disalin."; }
-      else statusEl.textContent = (await copied) ? "Tautan disalin. Tempel di aplikasi tujuan." : "Tidak bisa membuka menu bagikan. Coba tombol Salin tautan.";
+      if (e && e.name === "AbortError") { if (await copied) say("Tautan sudah disalin."); }
+      else say((await copied) ? "Tautan disalin. Tempel di aplikasi tujuan." : "Tidak bisa membuka menu bagikan. Coba tombol Salin tautan.");
     }
   });
-
-  document.getElementById("copy").addEventListener("click", async () => {
-    try {
-      await navigator.clipboard.writeText(PAGE_URL);
-      statusEl.textContent = "Tautan disalin.";
-    } catch (e) {
-      statusEl.textContent = "Tidak bisa menyalin. Salin manual: " + PAGE_URL;
-    }
-  });
+  $("copy").addEventListener("click", async () => say(await copyText(PAGE_URL) ? "Tautan disalin." : "Tidak bisa menyalin. Salin manual: " + PAGE_URL));
 
   if (GOATCOUNTER.trim()) {
     const g = document.createElement("script");
@@ -226,6 +395,5 @@ h1 em{display:block;font-weight:500}
     document.body.appendChild(g);
   }
 </script>
-
 </body>
 </html>
